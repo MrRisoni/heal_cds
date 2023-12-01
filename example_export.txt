@@ -11,11 +11,29 @@
 
 
 
-SELECT t.stamp,ba.enemy_spell_id,ba.short_title , p.name, s.friendly_spell_id
+Nymue
+{time:00:22}{spell:420907} |cffF88379Rain Dmg|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:50}{spell:425357} |cffFFD700Rot Dmg|r - |cfffefefeAkumai|r {spell:47536}  
+{time:01:54}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
+{time:03:06}{spell:420907} |cffF88379Rain Dmg|r - |cfffefefeAkumai|r {spell:47536}  
+{time:03:58}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
+{time:04:50}{spell:420907} |cffF88379Rain Dmg|r - |cfffefefeAkumai|r {spell:47536}  
+
+My Nymue
+
+{time:00:22}{spell:420907} |cffF88379Rain dmge|r -|cfffefefeAkumai|r {spell:246287}
+{time:00:50}{spell:425357} |cffFFD700Rot Dmg|r -|cfffefefeAkumai|r {spell:47536}
+{time:01:54}{spell:420846} |cffCC0000Phase 2 Dmg|r -|cfffefefeAkumai|r {spell:246287}
+{time:03:06}{spell:420907} |cffF88379Rain dmge|r -|cfffefefeAkumai|r {spell:47536}
+
+
+SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id
 FROM boss_timing t 
 JOIN boss_abilities ba ON ba.id = t.ability_id
 JOIN assignments a ON a.timer_id = t.id
 JOIN players p ON p.id = a.player_id
 JOIN spells s ON s.id = a.heal_spell_id
-WHERE ba.boss_id  =1
+WHERE ba.boss_id  =2
 ORDER BY t.order_id ASC
+
+https://www.wowhead.com/guide/writing-a-good-exorsus-raid-tools-note-11624
