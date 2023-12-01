@@ -15,4 +15,6 @@ class BossTimer extends Model
     protected $table = 'boss_timing';
 
 
+  
+
 }

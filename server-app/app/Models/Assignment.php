@@ -14,4 +14,9 @@ class Assignment extends Model
      */
     protected $table = 'assignments';
 
+
+    public function spell_queue()
+    {
+        return $this->hasOne(BossTimer::class);
+    }
 }

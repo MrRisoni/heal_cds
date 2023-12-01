@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Assignment;
+
 
 class MRTController extends Controller
 {
@@ -31,8 +33,17 @@ echo implode ('<br>',$mrtArray);
     }
 
 
-    public function assignments(int $boss_id)
+    public function assignments(int $id)
     {
         // http://localhost:8000/mrt/boss/assigns/6
+
+        return DB::select('SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id
+        FROM boss_timing t 
+        JOIN boss_abilities ba ON ba.id = t.ability_id
+        JOIN assignments a ON a.timer_id = t.id
+        JOIN players p ON p.id = a.player_id
+        JOIN spells s ON s.id = a.heal_spell_id
+        WHERE ba.boss_id  =:id
+        ORDER BY t.order_id ASC',["id" => $id]);
     }
 }
