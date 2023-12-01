@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MRTController;
+use App\Http\Controllers\RaidController;
+use App\Http\Controllers\SpellController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +17,21 @@ use App\Http\Controllers\MRTController;
 |
 */
 
+// http://localhost:8000/mrt/boss/6
+Route::get('/mrt/boss/{id}', [MRTController::class, 'export']);
 
 
-Route::get('/', [MRTController::class, 'show']);
+// http://localhost:8000/raid/4
+Route::get('/raid/{id}', [RaidController::class, 'bosses']);
 
+
+
+// http://localhost:8000/boss/6
+Route::get('/abilities/{id}', [RaidController::class, 'abilities']);
+
+
+Route::get('/spells', [SpellController::class, 'spells']);
+
+
+// http://localhost:8000/mrt/boss/assigns/6
+Route::get('/mrt/boss/assigns/{id}', [MRTController::class, 'assignments']);

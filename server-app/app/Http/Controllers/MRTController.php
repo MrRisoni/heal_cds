@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class MRTController extends Controller
 {
    
-    public function show()
+    public function export(int $id)
     {
         $results = DB::select('SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id
 FROM boss_timing t 
@@ -17,8 +17,8 @@ JOIN boss_abilities ba ON ba.id = t.ability_id
 JOIN assignments a ON a.timer_id = t.id
 JOIN players p ON p.id = a.player_id
 JOIN spells s ON s.id = a.heal_spell_id
-WHERE ba.boss_id  =2
-ORDER BY t.order_id ASC');
+WHERE ba.boss_id  =:id
+ORDER BY t.order_id ASC',["id" => $id]);
 
       $mrtArray = [];
 foreach ($results as $row ) {
@@ -28,5 +28,11 @@ foreach ($results as $row ) {
 }
 
 echo implode ('<br>',$mrtArray);
+    }
+
+
+    public function assignments(int $boss_id)
+    {
+        // http://localhost:8000/mrt/boss/assigns/6
     }
 }
