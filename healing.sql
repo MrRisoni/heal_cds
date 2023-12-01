@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 08:44 AM
+-- Generation Time: Dec 01, 2023 at 09:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `assignments` (
   `id` int(10) UNSIGNED NOT NULL,
   `timer_id` int(10) UNSIGNED NOT NULL,
-  `spell_id` tinyint(3) UNSIGNED NOT NULL,
+  `heal_spell_id` tinyint(3) UNSIGNED NOT NULL,
   `player_id` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -38,7 +38,7 @@ CREATE TABLE `assignments` (
 -- Dumping data for table `assignments`
 --
 
-INSERT INTO `assignments` (`id`, `timer_id`, `spell_id`, `player_id`) VALUES
+INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`) VALUES
 (1, 2, 1, 1),
 (2, 4, 2, 1);
 
@@ -70,17 +70,19 @@ INSERT INTO `bosses` (`id`, `raid_id`, `name`) VALUES
 CREATE TABLE `boss_abilities` (
   `id` int(10) UNSIGNED NOT NULL,
   `boss_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
-  `title` varchar(45) NOT NULL
+  `short_title` varchar(45) NOT NULL,
+  `full_name` varchar(45) NOT NULL,
+  `enemy_spell_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `boss_abilities`
 --
 
-INSERT INTO `boss_abilities` (`id`, `boss_id`, `title`) VALUES
-(3, 1, 'Big AoE Soak'),
-(2, 1, 'Fury AoE'),
-(1, 1, 'On pull');
+INSERT INTO `boss_abilities` (`id`, `boss_id`, `short_title`, `full_name`, `enemy_spell_id`) VALUES
+(1, 1, 'On pull', '-', '0'),
+(2, 1, 'Fury AoE', 'Serpent\'s Fury', '421671'),
+(3, 1, 'Big AoE Soak', 'Flood of the Firelands', '420929');
 
 -- --------------------------------------------------------
 
@@ -153,17 +155,17 @@ INSERT INTO `raids` (`id`, `title`) VALUES
 CREATE TABLE `spells` (
   `id` tinyint(3) UNSIGNED NOT NULL,
   `title` varchar(20) NOT NULL,
-  `spell_id` varchar(12) NOT NULL
+  `friendly_spell_id` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `spells`
 --
 
-INSERT INTO `spells` (`id`, `title`, `spell_id`) VALUES
-(1, 'Evangelism', ''),
-(2, 'Rupture', ''),
-(3, 'Ultimate Penitence', '');
+INSERT INTO `spells` (`id`, `title`, `friendly_spell_id`) VALUES
+(1, 'Evangelism', '246287'),
+(2, 'Rupture', '47536'),
+(3, 'Ultimate Penitence', '421453');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +177,7 @@ INSERT INTO `spells` (`id`, `title`, `spell_id`) VALUES
 ALTER TABLE `assignments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `player_id` (`player_id`),
-  ADD KEY `spell_id` (`spell_id`),
+  ADD KEY `spell_id` (`heal_spell_id`),
   ADD KEY `timer_id` (`timer_id`);
 
 --
@@ -190,7 +192,7 @@ ALTER TABLE `bosses`
 --
 ALTER TABLE `boss_abilities`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `boss_id` (`boss_id`,`title`);
+  ADD UNIQUE KEY `boss_id` (`boss_id`,`short_title`);
 
 --
 -- Indexes for table `boss_timing`
@@ -274,7 +276,7 @@ ALTER TABLE `spells`
 --
 ALTER TABLE `assignments`
   ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`),
-  ADD CONSTRAINT `assignments_ibfk_2` FOREIGN KEY (`spell_id`) REFERENCES `spells` (`id`),
+  ADD CONSTRAINT `assignments_ibfk_2` FOREIGN KEY (`heal_spell_id`) REFERENCES `spells` (`id`),
   ADD CONSTRAINT `assignments_ibfk_3` FOREIGN KEY (`timer_id`) REFERENCES `boss_timing` (`id`);
 
 --

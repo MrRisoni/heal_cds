@@ -1,0 +1,21 @@
+"
+{time:00:26}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:12}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:01:35}{spell:417634} |cffFF8000Intermission AOE|r - |cfffefefeAkumai|r {spell:421453}  
+{time:00:37,SAA:417634:1}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:42,SAA:417634:1}{spell:417634} |cffFF8000Intermission AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:03,SCS:421316:1}{spell:421316} |cff8B4513Phase 2 AOE 3/16 sec|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:19,SCS:421316:1}{spell:427252} |cff90EE90Soaks|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:08,SCS:421316:1}{spell:427252} |cff90EE90Soaks|r - |cfffefefeAkumai|r {spell:246287}  
+"
+
+
+
+SELECT t.stamp,ba.enemy_spell_id,ba.short_title , p.name, s.friendly_spell_id
+FROM boss_timing t 
+JOIN boss_abilities ba ON ba.id = t.ability_id
+JOIN assignments a ON a.timer_id = t.id
+JOIN players p ON p.id = a.player_id
+JOIN spells s ON s.id = a.heal_spell_id
+WHERE ba.boss_id  =1
+ORDER BY t.order_id ASC
