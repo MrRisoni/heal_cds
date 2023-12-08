@@ -17,9 +17,13 @@
 
     <div class="dropdown">
   <button class="dropbtn">Dropdown</button>
+
   <div class="dropdown-content">
-  <a href="#"> <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_divineillumination.jpg"/>Link 1</a>
+  @foreach ($spells as $sp)
+  <a href="#"> <img src="{{ mix('resources/images/evangelism.jpg') }}">{{$sp->title}}</a>
+  @endforeach
   </div>
+
 </div>
      
     </div>

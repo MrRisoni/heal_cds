@@ -32,7 +32,7 @@ class HomeController extends Controller
         WHERE ba.boss_id =:id
         ORDER BY ta.order_id ASC",["id" => $bossId]);
         
-        
+        var_dump( Spell::all()[1]->title);
         
         return view('home',['timers' => $timers,'spells' => Spell::all()]);
     }
