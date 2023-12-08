@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Boss;
 use App\Models\BossAbility;
 use App\Models\BossTimer;
+use Illuminate\Support\Facades\DB;
 
 class RaidController extends Controller
 {
@@ -25,14 +26,14 @@ class RaidController extends Controller
     public function timers(int $bossId)
     {
 
-        /*
-        SELECT ta.stamp,ba.full_name
-FROM boss_timing ta
-JOIN boss_abilities ba ON ba.id = ta.ability_id
-WHERE ba.boss_id =6
-ORDER BY ta.order_id ASC
-*/
-            return  BossTimer::with('ability')->get()->toArray();
+                
+        return  DB::select("SELECT ta.stamp,ba.full_name
+        FROM boss_timing ta
+        JOIN boss_abilities ba ON ba.id = ta.ability_id
+        WHERE ba.boss_id =:id
+        ORDER BY ta.order_id ASC",["id" => $bossId]);
+
+         
     }
 }
 

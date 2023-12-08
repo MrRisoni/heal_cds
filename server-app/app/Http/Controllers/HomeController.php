@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $bossId = 4; // larodar
+        $timers =  DB::select("SELECT ta.stamp,ba.full_name
+        FROM boss_timing ta
+        JOIN boss_abilities ba ON ba.id = ta.ability_id
+        WHERE ba.boss_id =:id
+        ORDER BY ta.order_id ASC",["id" => $bossId]);
+        
+        return view('home',['timers' => $timers]);
     }
 }
