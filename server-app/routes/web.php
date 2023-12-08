@@ -26,8 +26,8 @@ Route::get('/raid/{id}', [RaidController::class, 'bosses']);
 
 
 
-// http://localhost:8000/boss/6
-Route::get('/abilities/{id}', [RaidController::class, 'abilities']);
+// http://localhost:8000/boss/6/timers
+Route::get('/boss/{id}/timers', [RaidController::class, 'timers']);
 
 
 Route::get('/spells', [SpellController::class, 'spells']);
@@ -36,6 +36,5 @@ Route::get('/spells', [SpellController::class, 'spells']);
 // http://localhost:8000/mrt/boss/assigns/6
 Route::get('/mrt/boss/assigns/{id}', [MRTController::class, 'assignments']);
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
