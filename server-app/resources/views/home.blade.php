@@ -13,7 +13,12 @@
     {{$tim->full_name}}
     </div>
     <div class="col-sm">
-      One of three columns
+    <select class="form-select" aria-label="Default select example">
+    <option selected></option>
+    @foreach ($spells as $sp)
+  <option value="2">{{$sp->title}}</option>
+  @endforeach
+</select>
     </div>
     
   </div>

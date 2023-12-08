@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Spell;
 
 class HomeController extends Controller
 {
@@ -31,8 +32,8 @@ class HomeController extends Controller
         WHERE ba.boss_id =:id
         ORDER BY ta.order_id ASC",["id" => $bossId]);
         
-        var_dump($timers);
         
-        return view('home',['timers' => $timers]);
+        
+        return view('home',['timers' => $timers,'spells' => Spell::all()]);
     }
 }
