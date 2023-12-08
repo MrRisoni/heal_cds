@@ -18,9 +18,7 @@
     <div class="dropdown">
   <button class="dropbtn">Dropdown</button>
   <div class="dropdown-content">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
+  <a href="#"> <img src="https://wow.zamimg.com/images/wow/icons/large/spell_holy_divineillumination.jpg"/>Link 1</a>
   </div>
 </div>
      
