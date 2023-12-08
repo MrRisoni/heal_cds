@@ -35,3 +35,7 @@ Route::get('/spells', [SpellController::class, 'spells']);
 
 // http://localhost:8000/mrt/boss/assigns/6
 Route::get('/mrt/boss/assigns/{id}', [MRTController::class, 'assignments']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -43,7 +43,6 @@ echo implode ('<br>',$mrtArray);
 
         $results =  DB::select($this->assigmentsSQL,["id" => $id]);
 
-
-return view('assigns', ['assigns' => $results]);
+return $results;
     }
 }
