@@ -31,6 +31,8 @@ class HomeController extends Controller
         WHERE ba.boss_id =:id
         ORDER BY ta.order_id ASC",["id" => $bossId]);
         
+        var_dump($timers);
+        
         return view('home',['timers' => $timers]);
     }
 }

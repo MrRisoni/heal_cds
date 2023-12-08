@@ -7,17 +7,15 @@
 @foreach ($timers as $tim)
 <div class="row">
     <div class="col-sm">
-      One of three columns
+      {{$tim->stamp}}
+    </div>
+    <div class="col-sm">
+    {{$tim->full_name}}
     </div>
     <div class="col-sm">
       One of three columns
     </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
+    
   </div>
   @endforeach
 
