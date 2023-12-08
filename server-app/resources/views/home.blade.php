@@ -13,12 +13,17 @@
     {{$tim->full_name}}
     </div>
     <div class="col-sm">
-    <select class="form-select" aria-label="Default select example">
-    <option selected></option>
-    @foreach ($spells as $sp)
-  <option value="2">{{$sp->title}}</option>
-  @endforeach
-</select>
+   
+
+    <div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  </div>
+</div>
+     
     </div>
     
   </div>
