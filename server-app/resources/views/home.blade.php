@@ -5,7 +5,7 @@
     
 
 @foreach ($timers as $tim)
-<div class="row">
+<div class="row timerRow">
     <div class="col-sm">
       {{$tim->stamp}}
     </div>
@@ -20,7 +20,7 @@
 
   <div class="dropdown-content">
   @foreach ($spells as $sp)
-  <a href="#"> <img src="{{ mix('resources/images/evangelism.jpg') }}">{{$sp->title}}</a>
+  <p>  <img src="{{ mix('resources/images/'.$sp->filename.'.jpg') }}">{{$sp->title}}</p>
   @endforeach
   </div>
 

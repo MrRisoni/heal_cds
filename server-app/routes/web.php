@@ -38,3 +38,7 @@ Route::get('/mrt/boss/assigns/{id}', [MRTController::class, 'assignments']);
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+
+// http://localhost:8000/plan/2/boss/1
+Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2023 at 12:17 PM
+-- Generation Time: Dec 11, 2023 at 07:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,20 +46,21 @@ CREATE TABLE `assignments` (
   `id` int(10) UNSIGNED NOT NULL,
   `timer_id` int(10) UNSIGNED NOT NULL,
   `heal_spell_id` tinyint(3) UNSIGNED NOT NULL,
-  `player_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
+  `player_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `plan_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `assignments`
 --
 
-INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`) VALUES
-(1, 2, 1, 1),
-(2, 4, 2, 1),
-(3, 5, 1, 1),
-(4, 6, 2, 1),
-(5, 7, 1, 1),
-(6, 8, 2, 1);
+INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`, `plan_id`) VALUES
+(1, 2, 1, 1, 1),
+(2, 4, 2, 1, 1),
+(3, 5, 1, 1, 1),
+(4, 6, 2, 1, 1),
+(5, 7, 1, 1, 1),
+(6, 8, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`) VALUE
 
 CREATE TABLE `bosses` (
   `id` int(10) UNSIGNED NOT NULL,
-  `raid_id` tinyint(3) UNSIGNED NOT NULL,
+  `raid_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 3,
   `name` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -78,8 +79,32 @@ CREATE TABLE `bosses` (
 --
 
 INSERT INTO `bosses` (`id`, `raid_id`, `name`) VALUES
-(2, 3, 'Nymue'),
-(1, 3, 'Volcoross');
+(24, 1, 'Broodmother'),
+(22, 1, 'Dathea'),
+(19, 1, 'Eranog'),
+(23, 1, 'Kurog'),
+(26, 1, 'Primal Council'),
+(25, 1, 'Razageth'),
+(21, 1, 'Sennath'),
+(20, 1, 'Terros'),
+(11, 2, 'Amalgamation  Chambers'),
+(13, 2, 'Assault of Zaqali'),
+(17, 2, 'Echo of Neltharion'),
+(12, 2, 'Forgotten Experiments'),
+(10, 2, 'Kazzara'),
+(16, 2, 'Magmorax'),
+(14, 2, 'Rashok'),
+(18, 2, 'Sarkareth'),
+(15, 2, 'Zskarn'),
+(5, 3, 'Council of Dreams'),
+(9, 3, 'Fyrakk'),
+(1, 3, 'Gnarlroot'),
+(2, 3, 'Igira'),
+(4, 3, 'Larodar'),
+(6, 3, 'Nymue'),
+(7, 3, 'Smolderon'),
+(8, 3, 'Tindral'),
+(3, 3, 'Volcoross');
 
 -- --------------------------------------------------------
 
@@ -101,12 +126,22 @@ CREATE TABLE `boss_abilities` (
 --
 
 INSERT INTO `boss_abilities` (`id`, `boss_id`, `short_title`, `full_name`, `enemy_spell_id`, `enemy_color`) VALUES
-(1, 1, 'On pull', '-', '0', ''),
-(2, 1, 'Fury AoE', 'Serpent\'s Fury', '421671', ''),
-(3, 1, 'Big AoE Soak', 'Flood of the Firelands', '420929', ''),
-(4, 2, 'Rain dmge', 'Viridian Rain', '420907', 'cffF88379'),
-(5, 2, 'Phase 2 Dmg', 'Continuum', '420846', 'cffCC0000'),
-(6, 2, 'Rot Dmg', 'Surging Growth', '425357', 'cffFFD700');
+(1, 1, 'On pull', 'On pull', '0', ''),
+(2, 1, 'Tortured Scream', 'Tortured Scream', '', ''),
+(3, 1, '\nFlaming Pestilence', '\nFlaming Pestilence', '420929', ''),
+(4, 6, 'Rain dmge', 'Viridian Rain', '420907', 'cffF88379'),
+(5, 6, 'Phase 2 Dmg', 'Continuum', '420846', 'cffCC0000'),
+(6, 6, 'Rot Dmg', 'Surging Growth', '425357', 'cffFFD700'),
+(7, 4, 'Furious Outburst', 'Furious Outburst', '425025', '425025'),
+(8, 4, 'Intermission AoE', 'Raging Inferno', '', ''),
+(9, 4, 'Inferno', ' Raging Inferno', '417634', ''),
+(10, 4, 'Flames', 'Consuming Flames', '421316', ''),
+(11, 4, 'Ash', 'Searing Ash', '421407', ''),
+(12, 4, 'Embers', 'Falling Embers', '47252', ''),
+(13, 1, 'Controlled Burn', 'Controlled Burn', '', ''),
+(14, 1, 'Tainted Bloom', 'Tainted Bloom', '', ''),
+(15, 1, ' Doom Cultivation', ' Doom Cultivation', '', ''),
+(16, 1, 'Uprooted Agony', 'Uprooted Agony', '', '');
 
 -- --------------------------------------------------------
 
@@ -133,7 +168,22 @@ INSERT INTO `boss_timing` (`id`, `ability_id`, `stamp`, `order_id`) VALUES
 (8, 4, '03:06', 8),
 (7, 5, '01:54', 3),
 (9, 5, '03:58', 9),
-(6, 6, '00:50', 2);
+(6, 6, '00:50', 2),
+(10, 7, '00:26', 1),
+(11, 7, '00:48', 2),
+(12, 7, '01:12', 3),
+(13, 7, '01:34', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `colors`
+--
+
+CREATE TABLE `colors` (
+  `id` tinyint(4) NOT NULL,
+  `hex` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -178,23 +228,49 @@ INSERT INTO `raids` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `raid_plans`
+--
+
+CREATE TABLE `raid_plans` (
+  `id` tinyint(3) UNSIGNED NOT NULL,
+  `title` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `raid_plans`
+--
+
+INSERT INTO `raid_plans` (`id`, `title`) VALUES
+(1, 'Disc Priest'),
+(2, 'Holy Paladin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `spells`
 --
 
 CREATE TABLE `spells` (
   `id` tinyint(3) UNSIGNED NOT NULL,
   `title` varchar(20) NOT NULL,
-  `friendly_spell_id` varchar(12) NOT NULL
+  `friendly_spell_id` varchar(12) NOT NULL,
+  `filename` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `spells`
 --
 
-INSERT INTO `spells` (`id`, `title`, `friendly_spell_id`) VALUES
-(1, 'Evangelism', '246287'),
-(2, 'Rupture', '47536'),
-(3, 'Ultimate Penitence', '421453');
+INSERT INTO `spells` (`id`, `title`, `friendly_spell_id`, `filename`) VALUES
+(1, 'Evangelism', '246287', 'evangelism'),
+(2, 'Rupture', '47536', ''),
+(3, 'Ultimate Penitence', '421453', 'uppies'),
+(4, 'PW:Barrier', '', ''),
+(5, 'Aura Mastery', '31821', '31821'),
+(6, 'Divine Toll', '304971', ''),
+(7, 'Daybreak', '414176', ''),
+(8, 'Tyrs Deliverance', '200652', ''),
+(9, 'Beacon of Virtue', '200025', '');
 
 --
 -- Indexes for dumped tables
@@ -207,7 +283,8 @@ ALTER TABLE `assignments`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `timer_id` (`timer_id`,`heal_spell_id`,`player_id`),
   ADD KEY `player_id` (`player_id`),
-  ADD KEY `spell_id` (`heal_spell_id`);
+  ADD KEY `spell_id` (`heal_spell_id`),
+  ADD KEY `plan_id` (`plan_id`);
 
 --
 -- Indexes for table `bosses`
@@ -231,6 +308,13 @@ ALTER TABLE `boss_timing`
   ADD UNIQUE KEY `ability_id` (`ability_id`,`stamp`,`order_id`);
 
 --
+-- Indexes for table `colors`
+--
+ALTER TABLE `colors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `hex` (`hex`);
+
+--
 -- Indexes for table `players`
 --
 ALTER TABLE `players`
@@ -242,6 +326,13 @@ ALTER TABLE `players`
 --
 ALTER TABLE `raids`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `raid_plans`
+--
+ALTER TABLE `raid_plans`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `title` (`title`);
 
 --
 -- Indexes for table `spells`
@@ -264,19 +355,25 @@ ALTER TABLE `assignments`
 -- AUTO_INCREMENT for table `bosses`
 --
 ALTER TABLE `bosses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `boss_abilities`
 --
 ALTER TABLE `boss_abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `boss_timing`
 --
 ALTER TABLE `boss_timing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `players`
@@ -291,10 +388,16 @@ ALTER TABLE `raids`
   MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `raid_plans`
+--
+ALTER TABLE `raid_plans`
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `spells`
 --
 ALTER TABLE `spells`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -306,7 +409,8 @@ ALTER TABLE `spells`
 ALTER TABLE `assignments`
   ADD CONSTRAINT `assignments_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`),
   ADD CONSTRAINT `assignments_ibfk_2` FOREIGN KEY (`heal_spell_id`) REFERENCES `spells` (`id`),
-  ADD CONSTRAINT `assignments_ibfk_3` FOREIGN KEY (`timer_id`) REFERENCES `boss_timing` (`id`);
+  ADD CONSTRAINT `assignments_ibfk_3` FOREIGN KEY (`timer_id`) REFERENCES `boss_timing` (`id`),
+  ADD CONSTRAINT `assignments_ibfk_4` FOREIGN KEY (`plan_id`) REFERENCES `raid_plans` (`id`);
 
 --
 -- Constraints for table `bosses`
