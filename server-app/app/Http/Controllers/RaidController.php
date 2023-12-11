@@ -38,20 +38,29 @@ class RaidController extends Controller
     }
 
 
-    public function plan(int $bossId,int $planId)
+    public function plan(int $planId,int $bossId)
     {
 
          $planSQL = "
-        SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id,s.title AS friendlyName
+        SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, 
+        s.friendly_spell_id,s.title AS friendlyName,s.filename
     FROM boss_timing t 
     JOIN boss_abilities ba ON ba.id = t.ability_id
-    JOIN assignments a ON a.timer_id = t.id
-    JOIN players p ON p.id = a.player_id
-    JOIN spells s ON s.id = a.heal_spell_id
-    WHERE ba.boss_id  =:boss_id AND a.plan_id =:plan_id
+    LEFT JOIN assignments a ON a.timer_id = t.id
+    LEFT JOIN players p ON p.id = a.player_id
+    LEFT JOIN spells s ON s.id = a.heal_spell_id
+    WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
     ORDER BY t.order_id ASC ";
 
-    return  DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId]);
+
+    return view('raid_plan', ['assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId])]);
+    }
+
+    public function add_timer(int $boss_id)
+    {
+       
+        return view('add_timer', ['abilities' => BossAbility::all()]);
+
     }
 }
 

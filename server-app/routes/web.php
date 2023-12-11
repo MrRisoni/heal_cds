@@ -26,7 +26,7 @@ Route::get('/raid/{id}', [RaidController::class, 'bosses']);
 
 
 
-// http://localhost:8000/boss/6/timers
+// http://localhost:8000/boss/1/timers
 Route::get('/boss/{id}/timers', [RaidController::class, 'timers']);
 
 
@@ -42,3 +42,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 // http://localhost:8000/plan/2/boss/1
 Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);
+
+
+
+http://localhost:8000/boss/3/add_timer
+Route::get('/boss/{boss_id}/add_timer', [RaidController::class, 'add_timer']);
