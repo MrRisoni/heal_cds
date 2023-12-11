@@ -14,6 +14,8 @@ class BossAbility extends Model
      * @var string
      */
     protected $table = 'boss_abilities';
+    public $timestamps = false;
+
 
 
 

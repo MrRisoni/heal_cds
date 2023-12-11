@@ -45,5 +45,8 @@ Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);
 
 
 
-http://localhost:8000/boss/3/add_timer
+//http://localhost:8000/boss/3/add_timer
 Route::get('/boss/{boss_id}/add_timer', [RaidController::class, 'add_timer']);
+
+// http://localhost:8000/boss/save_timer
+Route::post('/save_timer', [RaidController::class, 'save_timer']);

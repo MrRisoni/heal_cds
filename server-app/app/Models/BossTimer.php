@@ -15,6 +15,9 @@ class BossTimer extends Model
      */
     protected $table = 'boss_timing';
 
+    public $timestamps = false;
+
+
 
     
     public function timers(): HasMany

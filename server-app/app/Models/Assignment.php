@@ -14,6 +14,8 @@ class Assignment extends Model
      */
     protected $table = 'assignments';
 
+    public $timestamps = false;
+
 
     public function spell_queue()
     {

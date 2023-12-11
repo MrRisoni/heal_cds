@@ -9,6 +9,7 @@ use App\Models\BossAbility;
 use App\Models\BossTimer;
 use Illuminate\Support\Facades\DB;
 
+
 class RaidController extends Controller
 {
    
@@ -59,8 +60,34 @@ class RaidController extends Controller
     public function add_timer(int $boss_id)
     {
        
-        return view('add_timer', ['abilities' => BossAbility::all()]);
+        return view('add_timer', ['boss_id' =>$boss_id, 'abilities' => 
+        DB::select('SELECT * FROM boss_abilities WHERE boss_id = :id ORDER BY short_title ASC',['id' => $boss_id])]);
+        
+    }
 
+    public function save_timer(Request $request)
+    {
+
+        $stampText = $request->input('stampText');
+
+
+        $bossId = $request->input('bossId');
+        $abilitySelectId = $request->input('abilitySelectId');
+        
+        $nextOrderId = DB::select(" SELECT 
+                                    IF ( MAX(order_id)  IS NULL,1,MAX(order_id)+1)
+                                    AS nextOrderId
+                                    FROM boss_timing t
+                                    JOIN  boss_abilities ba ON t.ability_id = ba.id
+                                    WHERE ba.boss_id = 3 LIMIT 1 ")[0]->nextOrderId;
+
+
+$tim = new BossTimer();
+$tim->ability_id =$abilitySelectId;
+$tim->stamp = $stampText;
+$tim->order_id = $nextOrderId;
+$tim->save();
+//DB::execute("INSERT INTO `boss_timing`  ( `ability_id`, `stamp`, `order_id`)  VALUES ('".$abilitySelectId."','".$stampText."','".$nextOrderId."') ");
     }
 }
 

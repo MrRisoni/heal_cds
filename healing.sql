@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 07:46 AM
+-- Generation Time: Dec 11, 2023 at 12:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `assignments` (
   `id` int(10) UNSIGNED NOT NULL,
   `timer_id` int(10) UNSIGNED NOT NULL,
   `heal_spell_id` tinyint(3) UNSIGNED NOT NULL,
-  `player_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `player_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2,
   `plan_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -55,12 +55,18 @@ CREATE TABLE `assignments` (
 --
 
 INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`, `plan_id`) VALUES
-(1, 2, 1, 1, 1),
-(2, 4, 2, 1, 1),
-(3, 5, 1, 1, 1),
-(4, 6, 2, 1, 1),
-(5, 7, 1, 1, 1),
-(6, 8, 2, 1, 1);
+(1, 17, 6, 2, 2),
+(2, 17, 7, 2, 2),
+(3, 15, 9, 2, 2),
+(4, 20, 9, 2, 2),
+(5, 25, 9, 2, 2),
+(6, 17, 9, 2, 2),
+(7, 27, 9, 2, 2),
+(8, 14, 8, 2, 2),
+(9, 27, 8, 2, 2),
+(10, 26, 7, 2, 2),
+(11, 26, 6, 2, 2),
+(12, 32, 10, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -134,14 +140,21 @@ INSERT INTO `boss_abilities` (`id`, `boss_id`, `short_title`, `full_name`, `enem
 (6, 6, 'Rot Dmg', 'Surging Growth', '425357', 'cffFFD700'),
 (7, 4, 'Furious Outburst', 'Furious Outburst', '425025', '425025'),
 (8, 4, 'Intermission AoE', 'Raging Inferno', '', ''),
-(9, 4, 'Inferno', ' Raging Inferno', '417634', ''),
+(9, 4, ' Raging Inferno', ' Raging Inferno', '417634', ''),
 (10, 4, 'Flames', 'Consuming Flames', '421316', ''),
 (11, 4, 'Ash', 'Searing Ash', '421407', ''),
 (12, 4, 'Embers', 'Falling Embers', '47252', ''),
 (13, 1, 'Controlled Burn', 'Controlled Burn', '', ''),
 (14, 1, 'Tainted Bloom', 'Tainted Bloom', '', ''),
 (15, 1, ' Doom Cultivation', ' Doom Cultivation', '', ''),
-(16, 1, 'Uprooted Agony', 'Uprooted Agony', '', '');
+(16, 1, 'Uprooted Agony', 'Uprooted Agony', '', ''),
+(17, 2, 'Pull Igira', '', '', ''),
+(18, 2, 'Mark for Torment', 'Mark for Torment', '', ''),
+(19, 2, 'Umbral Destruction', '', '', ''),
+(20, 3, 'Serpent\'s Fury', '', '', ''),
+(21, 3, ' Coiling Flames', '', '', ''),
+(22, 3, 'Flood of the Firelands', '', '', ''),
+(23, 4, 'Flash Fire', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -161,18 +174,67 @@ CREATE TABLE `boss_timing` (
 --
 
 INSERT INTO `boss_timing` (`id`, `ability_id`, `stamp`, `order_id`) VALUES
-(1, 1, '00:03', 1),
-(2, 2, '00:12', 2),
-(4, 2, '01:22', 4),
-(5, 4, '00:22', 1),
-(8, 4, '03:06', 8),
-(7, 5, '01:54', 3),
-(9, 5, '03:58', 9),
-(6, 6, '00:50', 2),
-(10, 7, '00:26', 1),
-(11, 7, '00:48', 2),
-(12, 7, '01:12', 3),
-(13, 7, '01:34', 4);
+(14, 1, '00:00', 1),
+(15, 2, '00:05', 2),
+(17, 2, '00:28', 3),
+(20, 2, '00:51', 7),
+(25, 2, '01:15', 12),
+(28, 2, '02:35', 15),
+(30, 2, '02:58', 17),
+(16, 3, '00:18', 4),
+(21, 3, '00:55', 8),
+(29, 3, '02:47', 16),
+(75, 7, '0:26', 1),
+(76, 7, '0:48', 2),
+(77, 7, '1:12', 3),
+(79, 7, '1:48', 5),
+(80, 7, '2:12', 6),
+(81, 7, '2:40', 7),
+(82, 7, '3:06', 8),
+(78, 9, '1:34', 4),
+(83, 9, '3:16', 9),
+(84, 11, '3:43', 10),
+(86, 11, '3:55', 12),
+(87, 11, '4:07', 13),
+(91, 11, '4:19', 17),
+(92, 11, '4:31', 18),
+(94, 11, '4:43', 20),
+(95, 11, '4:55', 21),
+(98, 11, '5:07', 24),
+(99, 11, '5:19', 25),
+(104, 11, '5:31', 30),
+(85, 12, '3:50', 11),
+(89, 12, '4:17', 15),
+(93, 12, '4:42', 19),
+(97, 12, '5:05', 23),
+(105, 12, '5:35', 31),
+(18, 13, '00:31', 5),
+(23, 13, '01:06', 10),
+(31, 13, '03:01', 18),
+(19, 14, '00:38', 6),
+(22, 14, '00:56', 9),
+(24, 14, '01:12', 11),
+(26, 14, '01:30', 13),
+(27, 15, '01:40', 14),
+(32, 17, '00:00', 1),
+(33, 20, '00:12', 1),
+(36, 20, '01:22', 4),
+(39, 20, '02:32', 7),
+(42, 20, '03:42', 10),
+(34, 21, '00:17', 2),
+(37, 21, '01:27', 5),
+(40, 21, '02:37', 8),
+(43, 21, '03:47', 11),
+(35, 22, '01:15', 3),
+(38, 22, '02:25', 6),
+(41, 22, '03:34', 9),
+(88, 23, '4:10', 14),
+(90, 23, '4:18', 16),
+(96, 23, '4:57', 22),
+(100, 23, '5:23', 26),
+(101, 23, '5:24', 27),
+(102, 23, '5:25', 28),
+(103, 23, '5:30', 29);
 
 -- --------------------------------------------------------
 
@@ -266,11 +328,12 @@ INSERT INTO `spells` (`id`, `title`, `friendly_spell_id`, `filename`) VALUES
 (2, 'Rupture', '47536', ''),
 (3, 'Ultimate Penitence', '421453', 'uppies'),
 (4, 'PW:Barrier', '', ''),
-(5, 'Aura Mastery', '31821', '31821'),
-(6, 'Divine Toll', '304971', ''),
-(7, 'Daybreak', '414176', ''),
-(8, 'Tyrs Deliverance', '200652', ''),
-(9, 'Beacon of Virtue', '200025', '');
+(5, 'Aura Mastery', '31821', 'am'),
+(6, 'Divine Toll', '304971', 'dt'),
+(7, 'Daybreak', '414176', 'day'),
+(8, 'Tyrs Deliverance', '200652', 'tyr'),
+(9, 'Beacon of Virtue', '200025', 'bov'),
+(10, 'Beacon of Light', '', 'bol');
 
 --
 -- Indexes for dumped tables
@@ -349,7 +412,7 @@ ALTER TABLE `spells`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `bosses`
@@ -361,13 +424,13 @@ ALTER TABLE `bosses`
 -- AUTO_INCREMENT for table `boss_abilities`
 --
 ALTER TABLE `boss_abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `boss_timing`
 --
 ALTER TABLE `boss_timing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
 -- AUTO_INCREMENT for table `colors`
@@ -397,7 +460,7 @@ ALTER TABLE `raid_plans`
 -- AUTO_INCREMENT for table `spells`
 --
 ALTER TABLE `spells`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

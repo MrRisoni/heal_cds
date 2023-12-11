@@ -3,20 +3,27 @@
 @section('content')
 <div class="container">
 
-<form>
+<form action="/save_timer" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <input type="text" class="form-control" id="stampText"   name="stampText" aria-describedby="emailHelp" placeholder="Enter email">
   </div>
+
+  <input type="hidden"  id="bossId"  name="bossId" value="{{$boss_id}}">
+
+
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <select class="form-select" id="abilitySelectId"  name="abilitySelectId" aria-label="Default select example">
+    @foreach ($abilities as $ab)
+
+  <option value="{{ $ab->id }}">{{ $ab->short_title }}</option>
+  @endforeach  
+</select>
+   
   </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
+
+  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
