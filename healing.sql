@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 02:09 PM
+-- Generation Time: Dec 12, 2023 at 07:47 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,21 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `healing`
 --
-
-DELIMITER $$
---
--- Procedures
---
-CREATE DEFINER=`root`@`localhost` PROCEDURE `AkumaiNymue` ()   SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id
-FROM boss_timing t 
-JOIN boss_abilities ba ON ba.id = t.ability_id
-JOIN assignments a ON a.timer_id = t.id
-JOIN players p ON p.id = a.player_id
-JOIN spells s ON s.id = a.heal_spell_id
-WHERE ba.boss_id  =2
-ORDER BY t.order_id ASC$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -137,50 +122,65 @@ INSERT INTO `boss_abilities` (`id`, `boss_id`, `short_title`, `full_name`, `enem
 (3, 1, '\nFlaming Pestilence', '\nFlaming Pestilence', '420929', ''),
 (4, 6, 'Viridian Rain', 'Viridian Rain', '420907', 'cffF88379'),
 (5, 6, 'Continuum', 'Continuum', '420846', 'cffCC0000'),
-(6, 6, 'Rot Dmg', 'Surging Growth', '425357', 'cffFFD700'),
+(6, 6, 'Rot Dmg', 'Rot Dmg', '425357', 'cffFFD700'),
 (7, 4, 'Furious Outburst', 'Furious Outburst', '425025', '425025'),
-(8, 4, 'Intermission AoE', 'Raging Inferno', '', ''),
+(8, 4, 'Intermission AoE', 'Intermission AoE', '', ''),
 (9, 4, ' Raging Inferno', ' Raging Inferno', '417634', ''),
-(10, 4, 'Flames', 'Consuming Flames', '421316', ''),
-(11, 4, 'Ash', 'Searing Ash', '421407', ''),
-(12, 4, 'Embers', 'Falling Embers', '47252', ''),
+(10, 4, 'Flames', 'Flames', '421316', ''),
+(11, 4, 'Ash', 'Ash', '421407', ''),
+(12, 4, 'Embers', 'Embers', '47252', ''),
 (13, 1, 'Controlled Burn', 'Controlled Burn', '', ''),
 (14, 1, 'Tainted Bloom', 'Tainted Bloom', '', ''),
 (15, 1, ' Doom Cultivation', ' Doom Cultivation', '', ''),
 (16, 1, 'Uprooted Agony', 'Uprooted Agony', '', ''),
-(17, 2, 'Pull Igira', '', '', ''),
+(17, 2, 'Pull Igira', 'Pull Igira', '', ''),
 (18, 2, 'Mark for Torment', 'Mark for Torment', '', ''),
-(19, 2, 'Umbral Destruction', '', '', ''),
-(20, 3, 'Serpent\'s Fury', '', '', ''),
-(21, 3, ' Coiling Flames', '', '', ''),
-(22, 3, 'Flood of the Firelands', '', '', ''),
-(23, 4, 'Flash Fire', '', '', ''),
-(24, 5, 'Barreling Charge', '', '', ''),
-(25, 5, ' Emerald Winds', '', '', ''),
-(26, 5, 'Blind Rage', '', '', ''),
-(27, 5, 'Constricting Thicket', '', '', ''),
-(28, 7, 'Brand of Damnation', '', '', ''),
-(29, 7, 'Searing Aftermath', '', '', ''),
-(30, 7, 'World In Flames', '', '', ''),
-(31, 8, 'Falling Star', '', '', ''),
-(32, 8, 'Mass Entanglement', '', '', ''),
-(33, 8, 'Blazing Mushroom', '', '', ''),
-(34, 8, 'Fiery Growth', '', '', ''),
-(35, 8, 'Incarnation: Moonkin', '', '', ''),
-(36, 8, ' Fire Beam', '', '', ''),
-(37, 8, ' Supernova', '', '', ''),
-(38, 8, 'Incarnation: Tree of Flame', '', '', ''),
-(39, 8, 'Flaming Germination', '', '', ''),
-(40, 8, 'Typhoon', '', '', ''),
-(41, 9, 'Wildfire', '', '', ''),
-(42, 9, 'Dream Rend', '', '', ''),
-(43, 9, 'Incarnate', '', '', ''),
-(44, 9, 'Corrupt', '', '', ''),
-(46, 9, 'Flamefall', '', '', ''),
-(47, 9, ' Lifeforce Barrier', '', '', ''),
-(48, 9, 'Shadowflame Devastation', '', '', ''),
-(49, 9, 'Eternal Firestorm', '', '', ''),
-(50, 9, ' Apocalypse Roar', '', '', '');
+(19, 2, 'Umbral Destruction', 'Umbral Destruction', '', ''),
+(20, 3, 'Serpent\'s Fury', 'Serpent\'s Fury', '', ''),
+(21, 3, ' Coiling Flames', ' Coiling Flames', '', ''),
+(22, 3, 'Flood of the Firelands', 'Flood of the Firelands', '', ''),
+(23, 4, 'Flash Fire', 'Flash Fire', '', ''),
+(24, 5, 'Barreling Charge', 'Barreling Charge', '', ''),
+(25, 5, ' Emerald Winds', ' Emerald Winds', '', ''),
+(26, 5, 'Blind Rage', 'Blind Rage', '', ''),
+(27, 5, 'Constricting Thicket', 'Constricting Thicket', '', ''),
+(28, 7, 'Brand of Damnation', 'Brand of Damnation', '', ''),
+(29, 7, 'Searing Aftermath', 'Searing Aftermath', '', ''),
+(30, 7, 'World In Flames', 'World In Flames', '', ''),
+(31, 8, 'Falling Star', 'Falling Star', '', ''),
+(32, 8, 'Mass Entanglement', 'Mass Entanglement', '', ''),
+(33, 8, 'Blazing Mushroom', 'Blazing Mushroom', '', ''),
+(34, 8, 'Fiery Growth', 'Fiery Growth', '', ''),
+(35, 8, 'Incarnation: Moonkin', 'Incarnation: Moonkin', '', ''),
+(36, 8, ' Fire Beam', ' Fire Beam', '', ''),
+(37, 8, ' Supernova', ' Supernova', '', ''),
+(38, 8, 'Incarnation: Tree of Flame', 'Incarnation: Tree of Flame', '', ''),
+(39, 8, 'Flaming Germination', 'Flaming Germination', '', ''),
+(40, 8, 'Typhoon', 'Typhoon', '', ''),
+(41, 9, 'Wildfire', 'Wildfire', '', ''),
+(42, 9, 'Dream Rend', 'Dream Rend', '', ''),
+(43, 9, 'Incarnate', 'Incarnate', '', ''),
+(44, 9, 'Corrupt', 'Corrupt', '', ''),
+(46, 9, 'Flamefall', 'Flamefall', '', ''),
+(47, 9, ' Lifeforce Barrier', ' Lifeforce Barrier', '', ''),
+(48, 9, 'Shadowflame Devastation', 'Shadowflame Devastation', '', ''),
+(49, 9, 'Eternal Firestorm', 'Eternal Firestorm', '', ''),
+(50, 9, ' Apocalypse Roar', ' Apocalypse Roar', '', ''),
+(51, 19, 'Incinerating Roar', 'Incinerating Roar', '', ''),
+(52, 19, 'Pulsing Flames', 'Pulsing Flames', '', ''),
+(53, 20, 'Rock Blast', 'Rock Blast', '', ''),
+(54, 20, 'Concussive Slam', 'Concussive Slam', '', ''),
+(55, 20, 'Shattering Impact', 'Shattering Impact', '', ''),
+(56, 20, 'Resonating Annihilation', 'Resonating Annihilation', '', ''),
+(57, 26, 'Conductive Mark', 'Conductive Mark', '', ''),
+(58, 26, 'Meteor Axes', 'Meteor Axes', '', ''),
+(59, 26, 'Primal Blizzard', 'Primal Blizzard', '', ''),
+(60, 22, 'Conductive Mark', 'Conductive Mark', '', ''),
+(61, 22, ' Cyclone', ' Cyclone', '', ''),
+(62, 22, 'Blowback', 'Blowback', '', ''),
+(63, 21, 'Chilling Aura', '', '', ''),
+(64, 21, 'Chilling Blast', '', '', ''),
+(65, 21, 'Gossamer Burst', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -370,7 +370,117 @@ INSERT INTO `boss_timing` (`id`, `ability_id`, `stamp`, `order_id`) VALUES
 (220, 49, '6:00', 22),
 (221, 50, '6:39', 23),
 (222, 50, '7:20', 24),
-(223, 50, '8:01', 25);
+(223, 50, '8:01', 25),
+(224, 51, '0:12', 1),
+(225, 51, '0:36', 2),
+(226, 51, '0:58', 3),
+(227, 51, '1:20', 4),
+(231, 51, '2:12', 8),
+(232, 51, '2:36', 9),
+(233, 51, '2:58', 10),
+(234, 51, '3:20', 11),
+(228, 52, '1:40', 5),
+(229, 52, '1:47', 6),
+(230, 52, '1:54', 7),
+(235, 53, '0:11', 1),
+(239, 53, '0:53', 5),
+(244, 53, '1:48', 10),
+(248, 53, '2:30', 14),
+(253, 53, '3:24', 19),
+(257, 53, '4:06', 23),
+(262, 53, '5:01', 28),
+(266, 53, '5:43', 32),
+(236, 54, '0:18', 2),
+(238, 54, '0:36', 4),
+(240, 54, '1:00', 6),
+(242, 54, '1:18', 8),
+(245, 54, '1:55', 11),
+(247, 54, '2:13', 13),
+(249, 54, '2:37', 15),
+(251, 54, '2:55', 17),
+(254, 54, '3:31', 20),
+(256, 54, '3:49', 22),
+(258, 54, '4:13', 24),
+(260, 54, '4:31', 26),
+(263, 54, '5:08', 29),
+(265, 54, '5:26', 31),
+(267, 54, '5:50', 33),
+(269, 54, '6:08', 35),
+(237, 55, '0:30', 3),
+(241, 55, '1:12', 7),
+(246, 55, '2:07', 12),
+(250, 55, '2:49', 16),
+(255, 55, '3:43', 21),
+(259, 55, '4:25', 25),
+(264, 55, '5:19', 30),
+(268, 55, '6:02', 34),
+(243, 56, '1:36', 9),
+(252, 56, '3:13', 18),
+(261, 56, '4:49', 27),
+(272, 57, '0:16', 1),
+(275, 57, '1:12', 4),
+(277, 57, '1:49', 6),
+(279, 57, '2:25', 8),
+(281, 57, '2:59', 10),
+(283, 57, '3:36', 12),
+(285, 57, '4:11', 14),
+(287, 57, '4:47', 16),
+(289, 57, '5:24', 18),
+(273, 58, '0:34', 2),
+(276, 58, '1:29', 5),
+(278, 58, '2:22', 7),
+(282, 58, '3:16', 11),
+(284, 58, '4:09', 13),
+(288, 58, '5:03', 17),
+(290, 58, '5:55', 19),
+(274, 59, '0:51', 3),
+(280, 59, '2:51', 9),
+(286, 59, '4:37', 15),
+(291, 60, '0:04', 1),
+(292, 60, '0:30', 2),
+(294, 60, '0:56', 4),
+(296, 60, '1:45', 6),
+(299, 60, '2:11', 9),
+(301, 60, '3:03', 11),
+(304, 60, '3:29', 14),
+(306, 60, '4:19', 16),
+(309, 60, '4:46', 19),
+(310, 60, '5:36', 20),
+(293, 61, '0:39', 3),
+(297, 61, '1:54', 7),
+(302, 61, '3:12', 12),
+(307, 61, '4:28', 17),
+(311, 61, '5:45', 21),
+(295, 62, '1:34', 5),
+(298, 62, '2:04', 8),
+(300, 62, '2:53', 10),
+(303, 62, '3:18', 13),
+(305, 62, '4:12', 15),
+(308, 62, '4:40', 18),
+(312, 63, '0:03', 1),
+(313, 63, '0:13', 2),
+(320, 63, '1:49', 9),
+(321, 63, '1:59', 10),
+(327, 63, '3:27', 16),
+(328, 63, '3:37', 17),
+(314, 64, '0:19', 3),
+(315, 64, '0:19', 4),
+(317, 64, '0:55', 6),
+(319, 64, '1:34', 8),
+(322, 64, '2:02', 11),
+(324, 64, '2:39', 13),
+(326, 64, '3:16', 15),
+(329, 64, '3:41', 18),
+(331, 64, '4:17', 20),
+(333, 64, '4:55', 22),
+(334, 64, '5:21', 23),
+(335, 64, '5:54', 24),
+(316, 65, '0:38', 5),
+(318, 65, '1:15', 7),
+(323, 65, '2:21', 12),
+(325, 65, '2:58', 14),
+(330, 65, '4:00', 19),
+(332, 65, '4:38', 21);
 
 -- --------------------------------------------------------
 
@@ -560,13 +670,13 @@ ALTER TABLE `bosses`
 -- AUTO_INCREMENT for table `boss_abilities`
 --
 ALTER TABLE `boss_abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `boss_timing`
 --
 ALTER TABLE `boss_timing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=336;
 
 --
 -- AUTO_INCREMENT for table `colors`
