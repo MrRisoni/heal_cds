@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 10:14 AM
+-- Generation Time: Dec 15, 2023 at 10:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,7 +71,6 @@ INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`, `plan
 (21, 78, 5, 2, 2),
 (22, 75, 6, 2, 2),
 (24, 75, 7, 2, 2),
-(25, 77, 7, 2, 2),
 (27, 77, 6, 2, 2),
 (28, 80, 7, 2, 2),
 (29, 80, 6, 2, 2);
@@ -940,7 +939,8 @@ CREATE TABLE `custom_timers` (
 --
 
 INSERT INTO `custom_timers` (`id`, `boss_id`, `plan_id`, `spell_id`, `stamp`, `timer`) VALUES
-(1, 4, 2, 8, '00:11', 11);
+(1, 4, 2, 8, '00:11', 11),
+(2, 4, 2, 7, '1:11', 71);
 
 -- --------------------------------------------------------
 
@@ -1180,7 +1180,7 @@ ALTER TABLE `colors`
 -- AUTO_INCREMENT for table `custom_timers`
 --
 ALTER TABLE `custom_timers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `players`

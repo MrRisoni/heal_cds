@@ -45,18 +45,27 @@ class RaidController extends Controller
     {
 
          $planSQL = "
-        SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, 
-        s.friendly_spell_id,s.title AS friendlyName,s.filename
-    FROM boss_timing t 
-    JOIN boss_abilities ba ON ba.id = t.ability_id
-    LEFT JOIN assignments a ON a.timer_id = t.id
-    LEFT JOIN players p ON p.id = a.player_id
-    LEFT JOIN spells s ON s.id = a.heal_spell_id
-    WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
-    ORDER BY t.order_id ASC, a.id ASC ";
+         SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, 
+         s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+     FROM boss_timing t 
+     JOIN boss_abilities ba ON ba.id = t.ability_id
+     LEFT JOIN assignments a ON a.timer_id = t.id
+     LEFT JOIN players p ON p.id = a.player_id
+     LEFT JOIN spells s ON s.id = a.heal_spell_id
+     WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
+ 
+ UNION 
+ 
+      SELECT t.stamp, '' AS enemy_spell_id,'' AS enemy_color, '' AS short_title , 'ff' AS color,'test' AS name, 
+         s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+     FROM custom_timers t 
+      JOIN spells s ON s.id = t.spell_id
+     WHERE t.boss_id  =:boss_id2 AND t.plan_id =:plan_id2
+      ORDER BY timer ASC ";
 
 
-    return view('raid_plan', ['assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId])]);
+    return view('raid_plan', ['assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId,
+    "boss_id2" => $bossId,'plan_id2' => $planId])]);
     }
 
     public function add_timer(int $boss_id)
