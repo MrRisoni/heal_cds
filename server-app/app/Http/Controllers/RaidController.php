@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Boss;
 use App\Models\BossAbility;
 use App\Models\BossTimer;
+use App\Models\Assignment;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -51,7 +53,7 @@ class RaidController extends Controller
     LEFT JOIN players p ON p.id = a.player_id
     LEFT JOIN spells s ON s.id = a.heal_spell_id
     WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
-    ORDER BY t.order_id ASC ";
+    ORDER BY t.order_id ASC, a.id ASC ";
 
 
     return view('raid_plan', ['assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId])]);
@@ -63,6 +65,36 @@ class RaidController extends Controller
         return view('add_timer', ['boss_id' =>$boss_id, 'abilities' => 
         DB::select('SELECT * FROM boss_abilities WHERE boss_id = :id ORDER BY short_title ASC',['id' => $boss_id])]);
         
+    }
+
+
+
+    public function add_cd(int $boss_id,int $spec_id)
+    {
+       
+        return view('add_cd', [
+            'spells' => DB::select("SELECT s.id,s.title 
+            FROM spells s WHERE s.spec_id = :spec_id ORDER BY s.title ASC",['spec_id' => $spec_id]),
+            
+            
+            'timers' => 
+        DB::select('SELECT t.id,t.stamp,ba.short_title FROM `boss_timing` t
+        JOIN boss_abilities ba ON ba.id = t.ability_id
+        WHERE ba.boss_id = :id
+        ORDER BY t.order_id ASC ',['id' => $boss_id])]);
+        
+    }
+
+    public function save_cd(Request $request)
+    {
+   
+
+       $assign = new Assignment();
+       $assign->timer_id =  $request->input('timerSelectId');
+       $assign->heal_spell_id = $request->input('spellSelectId');
+       
+       $assign->save();
+
     }
 
     public function save_timer(Request $request)
@@ -87,7 +119,6 @@ $tim->ability_id =$abilitySelectId;
 $tim->stamp = $stampText;
 $tim->order_id = $nextOrderId;
 $tim->save();
-//DB::execute("INSERT INTO `boss_timing`  ( `ability_id`, `stamp`, `order_id`)  VALUES ('".$abilitySelectId."','".$stampText."','".$nextOrderId."') ");
     }
 }
 

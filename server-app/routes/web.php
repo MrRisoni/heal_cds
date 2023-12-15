@@ -40,13 +40,20 @@ Route::get('/mrt/boss/assigns/{id}', [MRTController::class, 'assignments']);
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 
-// http://localhost:8000/plan/2/boss/1
-Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);
-
-
 
 //http://localhost:8000/boss/3/add_timer
 Route::get('/boss/{boss_id}/add_timer', [RaidController::class, 'add_timer']);
 
 // http://localhost:8000/boss/save_timer
 Route::post('/save_timer', [RaidController::class, 'save_timer']);
+
+
+
+//http://localhost:8000/boss/1/spec/1/add_cd
+Route::get('/boss/{boss_id}/spec/{spec_id}/add_cd', [RaidController::class, 'add_cd']);
+
+// http://localhost:8000/plan/save_cd
+Route::post('/plan/save_cd', [RaidController::class, 'save_cd']);
+
+// http://localhost:8000/plan/2/boss/1
+Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);

@@ -20,6 +20,8 @@
 <td>{{$as->name}}</td>
 @if (!is_null($as->friendlyName))
 <td>{{$as->friendlyName}}  <img class="spellicon" src="{{ mix('resources/images/'.$as->filename.'.jpg') }}"></td>
+@else
+<td></td>
 @endif
 
 
