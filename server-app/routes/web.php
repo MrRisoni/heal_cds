@@ -17,8 +17,8 @@ use App\Http\Controllers\SpellController;
 |
 */
 
-// http://localhost:8000/mrt/boss/6
-Route::get('/mrt/boss/{id}', [MRTController::class, 'export']);
+// http://localhost:8000/mrt/boss/6/plan/2
+Route::get('/mrt/boss/{boss_id}/plan/{plan_id}', [MRTController::class, 'export']);
 
 
 // http://localhost:8000/raid/4

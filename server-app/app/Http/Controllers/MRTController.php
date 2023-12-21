@@ -11,20 +11,33 @@ use App\Models\Assignment;
 class MRTController extends Controller
 {
    
-    private $assigmentsSQL = "
-    SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, s.friendly_spell_id,s.title AS friendlyName
+    private  $planSQL = "
+    SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, 
+    s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
 FROM boss_timing t 
 JOIN boss_abilities ba ON ba.id = t.ability_id
-JOIN assignments a ON a.timer_id = t.id
-JOIN players p ON p.id = a.player_id
-JOIN spells s ON s.id = a.heal_spell_id
-WHERE ba.boss_id  =:id
-ORDER BY t.order_id ASC ";
+LEFT JOIN assignments a ON a.timer_id = t.id
+LEFT JOIN players p ON p.id = a.player_id
+LEFT JOIN spells s ON s.id = a.heal_spell_id
+WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
+
+UNION 
+
+ SELECT t.stamp, '' AS enemy_spell_id,'' AS enemy_color, '' AS short_title , 'ff' AS color,'test' AS name, 
+    s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+FROM custom_timers t 
+ JOIN spells s ON s.id = t.spell_id
+WHERE t.boss_id  =:boss_id2 AND t.plan_id =:plan_id2
+ ORDER BY timer ASC ";
 
 
-    public function export(int $id)
+
+
+    public function export(int $boss_id,int $plan_id)
     {
-        $results =  DB::select($this->assigmentsSQL,["id" => $id]);
+        $results =  DB::select($this->planSQL,
+        ["boss_id" => $boss_id,'plan_id' => $plan_id,
+        "boss_id2" => $boss_id,'plan_id2' => $plan_id]);
 
       $mrtArray = [];
 foreach ($results as $row ) {

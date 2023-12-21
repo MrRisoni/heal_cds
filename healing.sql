@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 10:30 AM
--- Server version: 10.4.32-MariaDB
+-- Generation Time: Dec 21, 2023 at 06:59 AM
+-- Server version: 8.0.35
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -36,12 +36,12 @@ DELIMITER ;
 --
 
 CREATE TABLE `assignments` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `timer_id` int(10) UNSIGNED NOT NULL,
-  `heal_spell_id` tinyint(3) UNSIGNED NOT NULL,
-  `player_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2,
-  `plan_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `id` int UNSIGNED NOT NULL,
+  `timer_id` int UNSIGNED NOT NULL,
+  `heal_spell_id` tinyint UNSIGNED NOT NULL,
+  `player_id` tinyint UNSIGNED NOT NULL DEFAULT '2',
+  `plan_id` tinyint UNSIGNED NOT NULL DEFAULT '2'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `assignments`
@@ -73,7 +73,25 @@ INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`, `plan
 (24, 75, 7, 2, 2),
 (27, 77, 6, 2, 2),
 (28, 80, 7, 2, 2),
-(29, 80, 6, 2, 2);
+(29, 80, 6, 2, 2),
+(31, 155, 5, 2, 2),
+(32, 149, 11, 2, 2),
+(33, 139, 6, 2, 2),
+(34, 139, 7, 2, 2),
+(35, 141, 5, 2, 2),
+(36, 154, 11, 2, 2),
+(37, 159, 11, 2, 2),
+(38, 139, 9, 2, 2),
+(39, 141, 9, 2, 2),
+(41, 150, 9, 2, 2),
+(42, 152, 9, 2, 2),
+(43, 155, 9, 2, 2),
+(44, 157, 9, 2, 2),
+(48, 201, 5, 2, 2),
+(49, 200, 8, 2, 2),
+(50, 202, 6, 2, 2),
+(51, 199, 12, 2, 2),
+(52, 205, 12, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -82,10 +100,10 @@ INSERT INTO `assignments` (`id`, `timer_id`, `heal_spell_id`, `player_id`, `plan
 --
 
 CREATE TABLE `bosses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `raid_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 3,
+  `id` int UNSIGNED NOT NULL,
+  `raid_id` tinyint UNSIGNED NOT NULL DEFAULT '3',
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `bosses`
@@ -126,13 +144,13 @@ INSERT INTO `bosses` (`id`, `raid_id`, `name`) VALUES
 --
 
 CREATE TABLE `boss_abilities` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `boss_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `id` int UNSIGNED NOT NULL,
+  `boss_id` int UNSIGNED NOT NULL DEFAULT '1',
   `short_title` varchar(45) NOT NULL,
   `full_name` varchar(45) NOT NULL,
   `enemy_spell_id` varchar(15) NOT NULL,
   `enemy_color` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `boss_abilities`
@@ -286,12 +304,12 @@ INSERT INTO `boss_abilities` (`id`, `boss_id`, `short_title`, `full_name`, `enem
 --
 
 CREATE TABLE `boss_timing` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `ability_id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `ability_id` int UNSIGNED NOT NULL,
   `stamp` varchar(5) NOT NULL,
-  `order_id` tinyint(3) UNSIGNED NOT NULL,
-  `timer` smallint(5) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `order_id` tinyint UNSIGNED NOT NULL,
+  `timer` smallint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `boss_timing`
@@ -905,8 +923,7 @@ INSERT INTO `boss_timing` (`id`, `ability_id`, `stamp`, `order_id`, `timer`) VAL
 (659, 142, '5:28', 37, 328),
 (660, 141, '5:43', 38, 343),
 (661, 145, '6:22', 39, 382),
-(662, 144, '6:28', 40, 388),
-(663, 141, '6:44', 41, 404);
+(662, 144, '6:28', 40, 388);
 
 -- --------------------------------------------------------
 
@@ -915,9 +932,9 @@ INSERT INTO `boss_timing` (`id`, `ability_id`, `stamp`, `order_id`, `timer`) VAL
 --
 
 CREATE TABLE `colors` (
-  `id` tinyint(4) NOT NULL,
+  `id` tinyint NOT NULL,
   `hex` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -926,13 +943,13 @@ CREATE TABLE `colors` (
 --
 
 CREATE TABLE `custom_timers` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `boss_id` int(10) UNSIGNED NOT NULL DEFAULT 4,
-  `plan_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 2,
-  `spell_id` tinyint(3) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `boss_id` int UNSIGNED NOT NULL DEFAULT '4',
+  `plan_id` tinyint UNSIGNED NOT NULL DEFAULT '2',
+  `spell_id` tinyint UNSIGNED NOT NULL,
   `stamp` varchar(5) NOT NULL,
-  `timer` smallint(5) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `timer` smallint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `custom_timers`
@@ -940,7 +957,22 @@ CREATE TABLE `custom_timers` (
 
 INSERT INTO `custom_timers` (`id`, `boss_id`, `plan_id`, `spell_id`, `stamp`, `timer`) VALUES
 (1, 4, 2, 8, '00:11', 11),
-(2, 4, 2, 7, '1:11', 71);
+(2, 4, 2, 7, '1:11', 71),
+(3, 7, 2, 12, '0:14', 14),
+(4, 7, 2, 12, '2:14', 134),
+(5, 7, 2, 7, '1:10', 70),
+(6, 7, 2, 6, '1:11', 71),
+(7, 7, 2, 7, '2:24', 144),
+(8, 7, 2, 6, '2:25', 145),
+(9, 7, 2, 7, '2:45', 165),
+(10, 7, 2, 6, '2:46', 166),
+(11, 7, 2, 7, '4:23', 263),
+(12, 7, 2, 6, '4:24', 264),
+(13, 9, 2, 6, '00:07', 7),
+(14, 9, 2, 7, '00:08', 8),
+(15, 9, 2, 9, '00:09', 9),
+(16, 9, 2, 7, '01:22', 82),
+(17, 9, 2, 9, '01:24', 84);
 
 -- --------------------------------------------------------
 
@@ -949,11 +981,11 @@ INSERT INTO `custom_timers` (`id`, `boss_id`, `plan_id`, `spell_id`, `stamp`, `t
 --
 
 CREATE TABLE `players` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
-  `spec_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `id` tinyint UNSIGNED NOT NULL,
+  `spec_id` tinyint UNSIGNED NOT NULL DEFAULT '1',
   `name` varchar(25) NOT NULL,
   `color` varchar(12) NOT NULL DEFAULT 'cfffefefe'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `players`
@@ -970,9 +1002,9 @@ INSERT INTO `players` (`id`, `spec_id`, `name`, `color`) VALUES
 --
 
 CREATE TABLE `raids` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
+  `id` tinyint UNSIGNED NOT NULL,
   `title` varchar(35) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `raids`
@@ -990,9 +1022,9 @@ INSERT INTO `raids` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `raid_plans` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
+  `id` tinyint UNSIGNED NOT NULL,
   `title` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `raid_plans`
@@ -1009,9 +1041,9 @@ INSERT INTO `raid_plans` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `specs` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
+  `id` tinyint UNSIGNED NOT NULL,
   `title` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `specs`
@@ -1032,12 +1064,12 @@ INSERT INTO `specs` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `spells` (
-  `id` tinyint(3) UNSIGNED NOT NULL,
-  `spec_id` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
+  `id` tinyint UNSIGNED NOT NULL,
+  `spec_id` tinyint UNSIGNED NOT NULL DEFAULT '1',
   `title` varchar(20) NOT NULL,
   `friendly_spell_id` varchar(12) NOT NULL,
   `filename` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `spells`
@@ -1053,7 +1085,9 @@ INSERT INTO `spells` (`id`, `spec_id`, `title`, `friendly_spell_id`, `filename`)
 (7, 1, 'Daybreak', '414176', 'day'),
 (8, 1, 'Tyrs Deliverance', '200652', 'tyr'),
 (9, 1, 'Beacon of Virtue', '200025', 'bov'),
-(10, 1, 'Beacon of Light', '', 'bol');
+(10, 1, 'Beacon of Light', '', 'bol'),
+(11, 1, 'Divine Steed', '190784', 'holy_pony'),
+(12, 1, 'Avenging Wrath', '31884', 'wings');
 
 --
 -- Indexes for dumped tables
@@ -1150,67 +1184,67 @@ ALTER TABLE `spells`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `bosses`
 --
 ALTER TABLE `bosses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `boss_abilities`
 --
 ALTER TABLE `boss_abilities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `boss_timing`
 --
 ALTER TABLE `boss_timing`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=664;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=664;
 
 --
 -- AUTO_INCREMENT for table `colors`
 --
 ALTER TABLE `colors`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `custom_timers`
 --
 ALTER TABLE `custom_timers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `raids`
 --
 ALTER TABLE `raids`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `raid_plans`
 --
 ALTER TABLE `raid_plans`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `specs`
 --
 ALTER TABLE `specs`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `spells`
 --
 ALTER TABLE `spells`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` tinyint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
