@@ -129,6 +129,30 @@ $tim->stamp = $stampText;
 $tim->order_id = $nextOrderId;
 $tim->save();
     }
+
+
+
+
+    
+    public function custom(int $planId,int $bossId)
+    {
+
+         $planSQL = " 
+         SELECT t.stamp, '' AS enemy_spell_id,'' AS enemy_color, '' AS short_title , l.color,l.name , 
+         s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+     FROM custom_timers t 
+      JOIN spells s ON s.id = t.spell_id
+      JOIN players l ON l.spec_id = s.spec_id
+     WHERE t.boss_id  =:boss_id AND t.plan_id =:plan_id
+      ORDER BY timer ASC ";
+
+
+      $bossObj = Boss::find(9);
+
+
+    return view('raid_plan', ['bossObj' => $bossObj,
+        'assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId])]);
+    }
 }
 
 ?>

@@ -17,7 +17,7 @@ use App\Http\Controllers\SpellController;
 |
 */
 
-// http://localhost:8000/mrt/boss/6/plan/2
+// http://localhost:8000/mrt/boss/7/plan/2
 Route::get('/mrt/boss/{boss_id}/plan/{plan_id}', [MRTController::class, 'export']);
 
 
@@ -57,3 +57,8 @@ Route::post('/plan/save_cd', [RaidController::class, 'save_cd']);
 
 // http://localhost:8000/plan/2/boss/1
 Route::get('/plan/{plan_id}/boss/{boss_id}', [RaidController::class, 'plan']);
+
+
+
+// http://localhost:8000/custom/1/boss/9
+Route::get('/custom_mrt/{plan_id}/boss/{boss_id}', [MRTController::class, 'custom']);

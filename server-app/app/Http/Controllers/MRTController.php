@@ -58,4 +58,31 @@ echo implode ('<br>',$mrtArray);
 
 return $results;
     }
+
+
+
+
+    
+    public function custom(int $plan_id,int $boss_id)
+    {
+        $results =  DB::select("
+        
+        SELECT t.stamp, '' AS enemy_spell_id,'' AS enemy_color, '' AS short_title , 'ff' AS color,'test' AS name, 
+        s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+    FROM custom_timers t 
+     JOIN spells s ON s.id = t.spell_id
+    WHERE t.boss_id  =:boss_id AND t.plan_id =:plan_id
+     ORDER BY timer ASC ",
+        ["boss_id" => $boss_id,'plan_id' => $plan_id]);
+
+      $mrtArray = [];
+foreach ($results as $row ) {
+//  {time:03:58}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
+   
+    $mrtArray[] = '{time:'.$row->stamp.'}|'.$row->enemy_color.$row->short_title.'|r -|'.$row->color.$row->friendlyName.'|r {spell:'.$row->friendly_spell_id.'}';
+}
+
+echo implode ('<br>',$mrtArray);
+    }
+
 }

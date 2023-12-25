@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+
+<h2>{{$bossObj->name}}</h2>
 <table class="table">
 <thead>
     <tr>
