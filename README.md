@@ -1,4 +1,5 @@
 World of Warcraft Heal Assignment Export
 
+Discpiline Priest
 
-mvn package  -DskipTests
+Holy Paladin

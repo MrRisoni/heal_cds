@@ -64,7 +64,11 @@ class RaidController extends Controller
       ORDER BY timer ASC ";
 
 
-    return view('raid_plan', ['assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId,
+      $bossObj = Boss::find($bossId);
+
+
+    return view('raid_plan', ['bossObj' => $bossObj,
+        'assignments' => DB::select($planSQL,["boss_id" => $bossId,'plan_id' => $planId,
     "boss_id2" => $bossId,'plan_id2' => $planId])]);
     }
 
@@ -147,7 +151,7 @@ $tim->save();
       ORDER BY timer ASC ";
 
 
-      $bossObj = Boss::find(9);
+      $bossObj = Boss::find($bossId);
 
 
     return view('raid_plan', ['bossObj' => $bossObj,
