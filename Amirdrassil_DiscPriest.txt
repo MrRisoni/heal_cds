@@ -1,0 +1,126 @@
+Gnarlroot
+
+
+
+{time:00:28}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:52}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:03,SAR:421013:1}{spell:421840} |cff8B4513AOE 3/20sec|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:51,SAR:421013:1}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:03,SAR:421013:2}{spell:421840} |cff8B4513AOE 3/20sec|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:51,SAR:421013:2}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
+
+
+
+Igira
+
+
+
+{time:00:11}{spell:414888} |cff9370DBSpears Debuff|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:48}{spell:422776} |cffFF8000Intermission Start|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:48}{spell:414888} |cff9370DBSpears Debuff|r - |cfffefefeAkumai|r {spell:47536}  
+{time:03:19}{spell:422776} |cff008000Soak Active|r - |cfffefefeAkumai|r {spell:246287}  
+{time:04:00}{spell:416048} |cff8B4513Heal Absorb|r - |cfffefefeAkumai|r {spell:47536}  
+{time:04:57}{spell:414888} |cff9370DBSpears Debuff|r - |cfffefefeAkumai|r {spell:246287}  
+
+
+
+
+Volcoross
+
+
+
+{time:00:12}{spell:421671} |cff8B4513Fury AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:22}{spell:421671} |cff8B4513Fury AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:32}{spell:421671} |cff8B4513Fury AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:03:42}{spell:421671} |cff8B4513Fury AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:04:52}{spell:421671} |cff8B4513Fury AOE|r - |cfffefefeAkumai|r {spell:246287}  
+
+
+Larodar
+
+
+
+{time:00:26}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:12}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:01:35}{spell:417634} |cffFF8000Intermission AOE|r - |cfffefefeAkumai|r {spell:421453}  
+{time:00:37,SAA:417634:1}{spell:425025} |cffCC0000Charge AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:42,SAA:417634:1}{spell:417634} |cffFF8000Intermission AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:03,SCS:421316:1}{spell:421316} |cff8B4513Phase 2 AOE 3/16 sec|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:19,SCS:421316:1}{spell:427252} |cff90EE90Soaks|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:08,SCS:421316:1}{spell:427252} |cff90EE90Soaks|r - |cfffefefeAkumai|r {spell:246287}  
+
+
+
+Council
+
+
+
+
+{time:00:18}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:15,SAR:420525:1}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:46,SCC:420951:3}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:25,SCC:420951:3}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:26,SCC:420951:3}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:48,SAR:421029:1}{spell:421024} |cff006400Winds|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:20,SCC:420951:10}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:05,SCC:420951:10}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:47536}  
+
+
+Nymue
+
+
+{time:00:21} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
+{time:00:41} - Viridian Rain -  |cff808080Akumai|r {spell:47536}  
+{time:01:51} - Continuum -  |cff808080Akumai|r {spell:62618}  
+{time:02:24} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
+{time:02:44} - Viridian Rain -  |cff808080Akumai|r {spell:47536}  
+{time:03:04} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
+
+Smolderon
+
+
+
+{time:00:22}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:52}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:194509}  
+{time:01:08}{spell:422277} |cffFFD700Phase 2|r - |cfffefefeAkumai|r {spell:246287}  
+{time:02:00}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:30}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:194509}  
+{time:02:47}{spell:422277} |cffFFD700Phase 2|r - |cfffefefeAkumai|r {spell:246287}  
+{time:03:39}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:04:09}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:194509}  
+{time:04:26}{spell:422277} |cffFFD700Phase 2|r - |cfffefefeAkumai|r {spell:246287}  
+{time:05:18}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:05:48}{spell:422577} |cff8B4513Tank AOE|r - |cfffefefeAkumai|r {spell:194509}  
+{time:06:05}{spell:422277} |cffFFD700Phase 2|r - |cfffefefeAkumai|r {spell:246287}  
+
+
+Tindral
+
+
+
+{time:00:16}{spell:424495} |cffFF8000Root AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:56}{spell:424495} |cffFF8000Root AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:01:04,SAA:421603:1}{spell:424140} |cffC0C0C0Phase 2|r - |cfffefefeAkumai|r {spell:62618}  |cfffefefeAkumai|r {spell:194509}  
+{time:01:45,SAA:421603:1}{spell:423265} |cff8B4513Tree AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:02:33,SAA:421603:1}{spell:423265} |cff8B4513Tree AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:49,SAA:421603:2}{spell:424140} |cffC0C0C0Phase 3|r - |cfffefefeAkumai|r {spell:194509}  
+{time:01:44,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfffefefeAkumai|r {spell:246287}  
+{time:02:48,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfffefefeAkumai|r {spell:47536}  
+{time:03:50,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfffefefeAkumai|r {spell:246287}  
+
+
+Fyrakk
+
+
+
+{time:00:06}{spell:420422} |cffF88379Wildfire|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:50}{spell:425481} |cff8B4513Dream Rend|r - |cfffefefeAkumai|r {spell:421453}  |cfffefefeAkumai|r {spell:47536}  
+{time:00:15,SCS:412761:1}{spell:421923} |cffFFFF00Ramping Rot|r - |cfffefefeAkumai|r {spell:246287}  
+{time:00:12,SAR:421922:1}{spell:418978} |cffFF6666Burning Presence Starts|r - |cfffefefeAkumai|r {spell:47536}  
+{time:00:47,SAR:421922:1}|cffFF6EC7Heal Adds|r - |cfffefefeAkumai|r {spell:194509}  
+{time:01:26,SAR:421922:1}{spell:419123} |cffAB0E0EFlamefall|r - |cfffefefeAkumai|r {spell:246287}  
+{time:02:07,SAR:421922:1}{spell:418978} |cff654321Burning Presence Ends|r - |cfffefefeAkumai|r {spell:47536}  
+{time:02:27,SAR:421922:1}|cffFF6EC7Heal Adds|r - |cfffefefeAkumai|r {spell:194509}  
+{time:02:57,SAR:421922:1}|cffFF6EC7Heal Adds|r - |cfffefefeAkumai|r {spell:194509}  
+{time:00:38,SCC:422935:1}{spell:422839} |cffFF8000Apocalypse Roar|r - |cfffefefeAkumai|r {spell:246287}  
+{time:01:19,SCC:422935:1}{spell:422839} |cffFF8000Apocalypse Roar|r - |cfffefefeAkumai|r {spell:47536}  
