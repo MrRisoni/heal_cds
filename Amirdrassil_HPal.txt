@@ -1,0 +1,13 @@
+Tindral
+
+
+{time:00:16}{spell:424495} |cffFF8000Root AOE|r - |cfff38bb9Solziege|r {spell:200652}  |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:00:56}{spell:424495} |cffFF8000Root AOE|r - |cfff38bb9Solziege|r {spell:31821}  
+{time:01:05}{spell:424581} |cff0000FFDebuffs|r - |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:00:44,SAA:421603:1}{spell:424140} |cffCD853FSupernova Starts|r - |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:01:30,SAA:421603:1}{spell:424581} |cff0000FFDebuffs|r - |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:02:33,SAA:421603:1}{spell:423265} |cff8B4513Tree AOE|r - |cfff38bb9Solziege|r {spell:31821}  
+{time:00:29,SAA:421603:2}{spell:424140} |cffCD853FSupernova Starts|r - |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:01:44,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfff38bb9Solziege|r {spell:200652}  |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:02:48,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  
+{time:03:50,SAA:421603:2}{spell:423265} |cff8B4513Tree AOE|r - |cfff38bb9Solziege|r {spell:31821}  |cfff38bb9Solziege|r {spell:304971}  |cfff38bb9Solziege|r {spell:414170}  

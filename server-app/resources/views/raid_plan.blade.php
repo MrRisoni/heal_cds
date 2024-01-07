@@ -15,16 +15,17 @@
     </tr>
   </thead>
 <tbody>
-@foreach ($assignments as $as)
+@foreach ($assignments  as $k => $assign)
 <tr>
-<td>{{$as->stamp}}</td>
-<td>{{$as->short_title}}</td>
-<td>{{$as->name}}</td>
-@if (!is_null($as->friendlyName))
-<td>{{$as->friendlyName}}  <img class="spellicon" src="{{ mix('resources/images/'.$as->filename.'.jpg') }}"></td>
-@else
-<td></td>
-@endif
+<td>{{$assign['stamp']}}</td>
+<td>{{$assign['short_title']}}</td>
+<td>{{$assign['name']}}</td>
+<td>
+@foreach ($assign['assigns']  as $k2 => $cds)
+
+{{$cds->friendlyName}}  <img class="spellicon" src="{{ mix('resources/images/'.$cds->filename.'.jpg') }}">
+@endforeach
+</td>
 
 
 </tr>

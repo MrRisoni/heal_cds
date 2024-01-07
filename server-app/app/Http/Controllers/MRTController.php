@@ -6,86 +6,71 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Assignment;
+use App\Models\Boss;
 
 
 class MRTController extends Controller
 {
-   
-    private  $planSQL = "
-    SELECT t.stamp,ba.enemy_spell_id,ba.enemy_color, ba.short_title , p.color,p.name, 
-    s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
-FROM boss_timing t 
-JOIN boss_abilities ba ON ba.id = t.ability_id
-LEFT JOIN assignments a ON a.timer_id = t.id
-LEFT JOIN players p ON p.id = a.player_id
-LEFT JOIN spells s ON s.id = a.heal_spell_id
-WHERE ba.boss_id  =:boss_id AND (a.plan_id =:plan_id OR a.plan_id IS NULL)
 
-UNION 
 
- SELECT t.stamp, '' AS enemy_spell_id,'' AS enemy_color, '' AS short_title , 'ff' AS color,'test' AS name, 
-    s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
+    private $customPlanSQL = " 
+  SELECT t.stamp, ba.enemy_spell_id,ba.enemy_color, t.boss_spell_name AS short_title , p.color,p.name, 
+  s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer,t.priority
 FROM custom_timers t 
- JOIN spells s ON s.id = t.spell_id
-WHERE t.boss_id  =:boss_id2 AND t.plan_id =:plan_id2
- ORDER BY timer ASC ";
+JOIN spells s ON s.id = t.spell_id
+JOIN specs sp ON sp.id = s.spec_id
+JOIN players p ON sp.id  = p.spec_id
+JOIN boss_abilities ba ON ba.id = t.boss_spell_id
+WHERE t.boss_id  =:boss_id AND t.plan_id =:plan_id
+ORDER BY t.timer ASC ,t.priority ASC ";
 
 
-
-
-    public function export(int $boss_id,int $plan_id)
+    public function plan(int $plan_id, int $boss_id)
     {
-        $results =  DB::select($this->planSQL,
-        ["boss_id" => $boss_id,'plan_id' => $plan_id,
-        "boss_id2" => $boss_id,'plan_id2' => $plan_id]);
 
-      $mrtArray = [];
-foreach ($results as $row ) {
-//  {time:03:58}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
-   
-    $mrtArray[] = '{time:'.$row->stamp.'}{spell:'.$row->enemy_spell_id.'} |'.$row->enemy_color.$row->short_title.'|r -|'.$row->color.$row->name.'|r {spell:'.$row->friendly_spell_id.'}';
-}
+        $bossObj = Boss::find($boss_id);
+        $rawAssignments = DB::select($this->customPlanSQL, ["boss_id" => $boss_id, 'plan_id' => $plan_id]);
+        $assignments = [];
+        foreach($rawAssignments as $raw) {
+            $assignments[$raw->timer] = ['stamp' => $raw->stamp, 'enemy_spell_id' => $raw->enemy_spell_id,
+            'enemy_color' => $raw->enemy_color, 'short_title' => $raw->short_title,'color' => $raw->color,
+            'name' => $raw->name,'assigns' => []];
+        }
 
-echo implode ('<br>',$mrtArray);
-    }
+        foreach($rawAssignments as $raw) {
+            $tmp = new \stdClass;
+            $tmp->friendlyName =$raw->friendlyName;
+            $tmp->filename = $raw->filename;
 
-
-    public function assignments(int $id)
-    {
-        // http://localhost:8000/mrt/boss/assigns/6
-
-        $results =  DB::select($this->assigmentsSQL,["id" => $id]);
-
-return $results;
-    }
-
-
-
+            $assignments[$raw->timer]['assigns'][] =$tmp;
+        }
 
     
-    public function custom(int $plan_id,int $boss_id)
-    {
-        $results =  DB::select("
+       
+
+        return view('raid_plan', [
+            'bossObj' => $bossObj,
+            'assignments' => $assignments]);
         
-        SELECT t.stamp, ba.enemy_spell_id,ba.enemy_color, t.boss_spell_name AS short_title , p.color,p.name, 
-        s.friendly_spell_id,s.title AS friendlyName,s.filename,t.timer
-    FROM custom_timers t 
-     JOIN spells s ON s.id = t.spell_id
-     JOIN specs sp ON sp.id = s.spec_id
-     JOIN players p ON sp.id  = p.spec_id
-     JOIN boss_abilities ba ON ba.id = t.boss_spell_id
-    WHERE t.boss_id  =:boss_id AND t.plan_id =:plan_id
-     ORDER BY timer ASC ",
-        ["boss_id" => $boss_id,'plan_id' => $plan_id]);
 
-      $mrtArray = [];
-foreach ($results as $row ) {
-//  {time:03:58}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
-   
-$mrtArray[] = '{time:'.$row->stamp.'}{spell:'.$row->enemy_spell_id.'} |'.$row->enemy_color.$row->short_title.'|r -|'.$row->color.$row->name.'|r {spell:'.$row->friendly_spell_id.'}';
-}
+    }
 
-echo implode ('<br>',$mrtArray);
+
+    public function custom(int $plan_id, int $boss_id)
+    {
+        $results = DB::select(
+            $this->customPlanSQL,
+            ["boss_id" => $boss_id, 'plan_id' => $plan_id]
+        );
+
+        $mrtArray = [];
+        foreach ($results as $row) {
+            //  {time:03:58}{spell:420846} |cffCC0000Phase 2 Dmg|r - |cfffefefeAkumai|r {spell:246287}  
+
+            $mrtArray[] = '{time:' . $row->stamp . '}{spell:' . $row->enemy_spell_id . '} |' . $row->enemy_color . $row->short_title . '|r -|' . $row->color . $row->name . '|r {spell:' . $row->friendly_spell_id . '}';
+        }
+
+        echo implode('<br>', $mrtArray);
     }
 
 }
