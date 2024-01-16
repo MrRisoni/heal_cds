@@ -1,17 +1,7 @@
-Gnarlroot
-
-
-
-{time:00:28}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:246287}  
-{time:00:52}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
-{time:00:03,SAR:421013:1}{spell:421840} |cff8B4513AOE 3/20sec|r - |cfffefefeAkumai|r {spell:246287}  
-{time:00:51,SAR:421013:1}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
-{time:00:03,SAR:421013:2}{spell:421840} |cff8B4513AOE 3/20sec|r - |cfffefefeAkumai|r {spell:246287}  
-{time:00:51,SAR:421013:2}{spell:422026} |cffFF8000AOE + DoT|r - |cfffefefeAkumai|r {spell:47536}  
-
 
 
 Igira
+
 
 
 
@@ -25,7 +15,9 @@ Igira
 
 
 
+
 Volcoross
+
 
 
 
@@ -37,6 +29,7 @@ Volcoross
 
 
 Larodar
+
 
 
 
@@ -66,17 +59,10 @@ Council
 {time:01:05,SCC:420951:10}{spell:422052} |cffFF8000Charge|r - |cfffefefeAkumai|r {spell:47536}  
 
 
-Nymue
 
-
-{time:00:21} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
-{time:00:41} - Viridian Rain -  |cff808080Akumai|r {spell:47536}  
-{time:01:51} - Continuum -  |cff808080Akumai|r {spell:62618}  
-{time:02:24} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
-{time:02:44} - Viridian Rain -  |cff808080Akumai|r {spell:47536}  
-{time:03:04} - Viridian Rain -  |cff808080Akumai|r {spell:246287}  
 
 Smolderon
+
 
 
 
@@ -113,6 +99,7 @@ Fyrakk
 
 
 
+
 {time:00:06}{spell:420422} |cffF88379Wildfire|r - |cfffefefeAkumai|r {spell:246287}  
 {time:00:50}{spell:425481} |cff8B4513Dream Rend|r - |cfffefefeAkumai|r {spell:421453}  |cfffefefeAkumai|r {spell:47536}  
 {time:00:15,SCS:412761:1}{spell:421923} |cffFFFF00Ramping Rot|r - |cfffefefeAkumai|r {spell:246287}  
@@ -124,3 +111,4 @@ Fyrakk
 {time:02:57,SAR:421922:1}|cffFF6EC7Heal Adds|r - |cfffefefeAkumai|r {spell:194509}  
 {time:00:38,SCC:422935:1}{spell:422839} |cffFF8000Apocalypse Roar|r - |cfffefefeAkumai|r {spell:246287}  
 {time:01:19,SCC:422935:1}{spell:422839} |cffFF8000Apocalypse Roar|r - |cfffefefeAkumai|r {spell:47536}  
+
