@@ -180,7 +180,14 @@
 <main class="main">
   <div class="content">
    
-    Hello Spider Palace!
+
+    <table  class="table table-striped">
+    <tr *ngFor="let item of this.palacePlan.Larodar.plan ">
+      <td>{{item.time}}</td>
+      <td>{{item.cds}}</td>
+    
+ </tr>
+</table>
 
 
   </div>
