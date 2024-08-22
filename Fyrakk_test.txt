@@ -1,0 +1,2 @@
+{time:00:26}{spell:424495 } |cffCC0000Root|r - |cfffefefeAkumai|r {spell:246287 31821}
+{time:00:48}{spell:423265 } |cffCC0000Tree AoE|r - |cfffefefeAkumai|r {spell:47536}
