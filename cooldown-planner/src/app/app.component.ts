@@ -17,10 +17,14 @@ export class AppComponent {
   title = 'cooldown-planner';
 
   palacePlan: any = palacePlan;
+  cooldowns: any ;
 
 
   ngOnInit() {
     console.log(this.palacePlan);
+    for (var cds of this.palacePlan.Larodar.plan) {
+      this.cooldowns.
+    }
   }
 
 }
