@@ -15,8 +15,16 @@ $bossSpellId =$pl['counter'];
 
 $spellTitle = $fyrakk['spells'][$bossSpellId]['title'];
 
+	$healerName = '';
+	foreach($players as $p => $pv) {
+		foreach ($pv['spells'] as $k => $v) {
+			if ($k == $pl['cds']) {
+				$healerName = $p;
+			}
+		}
+	}
 
-	$txt = '{time:'.$pl['time'].'}{spell:'.$bossSpellId.' } |cffCC0000'.$spellTitle.'|r - |cfffefefeAkumai|r {spell:'.$pl['cds'].'}'.PHP_EOL;
+	$txt = '{time:'.$pl['time'].'}{spell:'.$bossSpellId.' } |cffCC0000'.$spellTitle.'|r - |cfffefefe'.$healerName.'|r {spell:'.$pl['cds'].'}'.PHP_EOL;
 	echo $txt;
 	fwrite($myfile, $txt);
 

@@ -1,22 +1,38 @@
 {
-  "healers": [
-    {
-      "Akumai": {
-        "color": "cfffefefe",
-        "spells": {
-          "47536": "Rapture",
-          "62618": "PW:Barrier",
-          "246287": "Evangelism"
-        }
-      },
-      "Solziege": {
-        "color": "cfff38bb9",
-        "spells": {
-          "31821": "Aura Mastery"
-        }
+  "healers": {
+    "Akumai": {
+      "color": "cfffefefe",
+      "spells": {
+        "47536": "Rapture",
+        "62618": "PW:Barrier",
+        "246287": "Evangelism"
+      }
+    },
+    "Solziege": {
+      "color": "cfff38bb9",
+      "spells": {
+        "31821": "Aura Mastery"
+      }
+    },
+    "Uraltstraza": {
+      "color": "cfff38bb9",
+      "spells": {
+        "31821": "Aura Mastery"
+      }
+    },
+    "Marushka": {
+      "color": "cfff38bb9",
+      "spells": {
+        "31821": "Aura Mastery"
+      }
+    },
+    "Dakini": {
+      "color": "cfff38bb9",
+      "spells": {
+        "31821": "Aura Mastery"
       }
     }
-  ],
+  },
   "bosses": {
     "Larodar": {
       "plan": [
@@ -45,7 +61,7 @@
         {
           "time": "00:26",
           "counter": "424495",
-          "cds": "246287 31821"
+          "cds": "246287"
         },
         {
           "time": "00:48",
